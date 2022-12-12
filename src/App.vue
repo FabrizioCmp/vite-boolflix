@@ -33,6 +33,6 @@ export default {
 @use "./style/general.scss";
 
 body {
-    background-color: antiquewhite;
+    background-color: #303030;
 }
 </style>
