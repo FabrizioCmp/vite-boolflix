@@ -1,4 +1,6 @@
 <template>
+    <AppHeader></AppHeader>
+    <AppMain></AppMain>
 
 </template>
 
@@ -10,7 +12,7 @@ export default{
     components: {AppHeader, AppMain},
     data(){
         return{
-            
+
         }
     }
 }
@@ -20,4 +22,8 @@ export default{
 
 <style lang="scss">
 @use "./style/general.scss";
+
+body{
+    background-color: antiquewhite;
+}
 </style>
