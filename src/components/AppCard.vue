@@ -8,7 +8,8 @@
                 <li>titolo: <b>{{ media.title }}</b></li>
                 <li>titolo originale:<b>{{ media.original_title }}</b></li>
                 <li>lingua: <b>{{ media.original_language }}</b></li>
-                <li>voto: <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span></li>
+                <li>voto: <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>
+                </li>
             </ul>
         </div>
         <div class="h-100" v-else>
@@ -19,7 +20,8 @@
                 <li>titolo: <b>{{ media.name }}</b></li>
                 <li>titolo originale: <b>{{ media.original_name }}</b></li>
                 <li>lingua: <b>{{ media.original_language }}</b></li>
-                <li>voto: <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span></li>
+                <li>voto: <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>
+                </li>
             </ul>
         </div>
     </div>
@@ -39,7 +41,12 @@ export default {
     },
     methods: {
         computeImgUrl(file) {
-            return "https://image.tmdb.org/t/p/w154" + file;
+            if (file) {
+                return "https://image.tmdb.org/t/p/w154" + file;
+            }
+            else{
+                return "/imgs/black-bg.jpg"
+            }
         },
         transformVoteBase(votobase10) {
             return Math.round(votobase10 / 2)
@@ -58,12 +65,14 @@ export default {
 
 
 <style lang="scss">
-.my_card{
+.my_card {
     position: relative;
-    height: 100%;
+    height: 300px;
     box-shadow: 4px 4px 10px black;
     border-radius: 10px;
+
 }
+
 .my_ul {
     list-style: none;
     padding-left: 0px;
@@ -74,20 +83,19 @@ export default {
     left: 10%;
     z-index: 5;
 }
-.star{
+
+.star {
     color: rgb(231, 214, 67);
 }
 
-.img_box{
+.img_box {
     height: 100%;
     width: 100%;
 }
 
-img{
+img {
     height: 100%;
     width: 100%;
     border-radius: 10px;
 }
-
-
 </style>
