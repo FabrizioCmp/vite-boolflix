@@ -1,30 +1,34 @@
 <template>
-    <form @submit.prevent="" action="">
-        <input type="text" name="" id="">
-        <button  type="submit">Search</button>
-    </form>
-
+    <div>
+        <form @submit.prevent="$emit('performSearch')">
+            <input type="text" v-model="store.searchText">
+            <button type="submit">Search</button>
+        </form>
+    </div>
 </template>
 
 <script>
 
-import {store} from "../store";
+import { store } from "../store";
 
-export default{
-    data(){
-        return{
+export default {
+    data() {
+        return {
             store,
-            datoTest: 0
+            datoTest: 0,
+            
         }
     },
-    methods:{   
-    },
-    computed:{
+    methods: {
 
-    } 
+    },
+    computed: {
+
+    }
 }
 </script>
 
 
 <style lang="scss">
+
 </style>
