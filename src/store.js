@@ -16,19 +16,22 @@ export function searchMedia(textInput) {
         params: {
             api_key: '21da4ccaba75317ee4b4509bec7eec2b',
             query: textInput,
+            language: "it"
         }
     })
         .then((resp) => {
             store.movies = resp.data.results
-
+            console.log(store.movies)
         })
     axios.get(basicURL + "/search/tv", {
         params: {
             api_key: '21da4ccaba75317ee4b4509bec7eec2b',
             query: textInput,
+            language: "it"
         }
     })
         .then((resp) => {
             store.series = resp.data.results
+            console.log(store.series)
         })
 }
