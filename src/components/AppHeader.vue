@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- al submit emette l'evento ascoltato da App.vue per far effettuare la ricerca -->
         <form @submit.prevent="$emit('performSearch')">
             <input type="text" v-model="store.searchText">
             <button type="submit">Search</button>

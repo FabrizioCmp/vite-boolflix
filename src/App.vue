@@ -1,4 +1,6 @@
 <template>
+    <!-- aspetta l'evento dal componente AppHeader per effetuare  
+        la ricerca tramite la funzoine importata dallo store  -->
     <AppHeader @performSearch="search"></AppHeader>
     <AppMain></AppMain>
 
@@ -17,6 +19,7 @@ export default {
         }
     },
     methods: {
+        // ******* TODO inserire ramo else per gestire la ricerca vuota (comparsa banner di avviso)
         search() {
             if (store.searchText) {
                 searchMedia(store.searchText);
