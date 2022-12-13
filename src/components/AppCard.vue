@@ -12,7 +12,8 @@
                     <li>titolo: <b>{{ media.title }}</b></li>
                     <li>titolo originale:<b>{{ media.original_title }}</b></li>
                     <li>lingua:
-                        <img class="flag_img" :src="getFlagURL(media.original_language)" alt="">
+                        <img v-if="getFlagURL(media.original_language)" class="flag_img" :src="getFlagURL(media.original_language)" alt="">
+                        <span v-else>{{media.original_language}}</span>
                     </li>
                     <li>voto: 
                         <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>       
@@ -30,7 +31,8 @@
                     <li>titolo: <b>{{ media.name }}</b></li>
                     <li>titolo originale: <b>{{ media.original_name }}</b></li>
                     <li>lingua:
-                        <img class="flag_img" :src="getFlagURL(media.original_language)" alt="">
+                        <img v-if="getFlagURL(media.original_language)" class="flag_img" :src="getFlagURL(media.original_language)" alt="">
+                        <span v-else>{{media.original_language}}</span>
                     </li>
                     <li>voto: 
                         <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>          
