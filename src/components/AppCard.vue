@@ -3,6 +3,7 @@
         <!-- tramite le proprietà di media scelgo se stampare
         una card film o una card  serie -->
         
+        <!-- card FILM -->
         <div class="h-100" v-if="media.hasOwnProperty('title')">
             <div class="img_box">
                 <img :src="computeImgUrl(media.poster_path)" alt="">
@@ -10,7 +11,7 @@
             <div v-show="displayDescription" class="description_box">
                 <ul class="my_ul">
                     <li>titolo: <b>{{ media.title }}</b></li>
-                    <li>titolo originale:<b>{{ media.original_title }}</b></li>
+                    <li>titolo originale: <b>{{ media.original_title }}</b></li>
                     <li>lingua:
                         <img v-if="getFlagURL(media.original_language)" class="flag_img" :src="getFlagURL(media.original_language)" alt="">
                         <span v-else>{{media.original_language}}</span>
@@ -23,6 +24,8 @@
                 </ul>
             </div>
         </div>
+
+        <!-- card SERIE -->
         <div class="h-100" v-else>
             <div class="img_box">
                 <img :src="computeImgUrl(media.poster_path)" alt="">
@@ -127,6 +130,7 @@ export default {
 
 .star {
     color: rgb(231, 214, 67);
+    width: 20px;
 }
 .star_dark{
     color: rgb(32, 32, 32);

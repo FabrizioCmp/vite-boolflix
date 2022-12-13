@@ -16,6 +16,9 @@
                 </div>
             </div>
         </div>
+        <div v-if="!checkIfSeries && !checkIfFilm && store.searchPerformed" class="no_results">
+            No results
+        </div>
     </div>
 </template>
 
@@ -65,6 +68,21 @@ export default {
 h2 {
     text-align: center;
     color: white;
+}
+
+.no_results{
+    width: 50%;
+    margin: auto;
+    font-size: 5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 5rem;
+    background-color: red;
+    color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px black;
+    text-shadow: 5px 5px black;
 }
 
 </style>

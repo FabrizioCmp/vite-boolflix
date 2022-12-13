@@ -44,6 +44,7 @@ export default {
         margin-bottom: 0%;
         color: red;
         font-weight: 700;
+        text-shadow: 2px 1px white;
     }
 
     form button {

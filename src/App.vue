@@ -1,4 +1,5 @@
 <template>
+
     <!-- aspetta l'evento dal componente AppHeader per effetuare  
         la ricerca tramite la funzoine importata dallo store  -->
     <AppHeader @performSearch="search"></AppHeader>
@@ -23,6 +24,8 @@ export default {
             if (store.searchText) {
                 searchMedia(store.searchText);
                 console.log("ricerca effettuata")
+            }else{
+                store.searchPerformed = true;
             }
         }
     }

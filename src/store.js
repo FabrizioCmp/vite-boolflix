@@ -6,6 +6,7 @@ export const store = reactive({
     searchText: "", //aggiornato dal componente AppHeader
     movies: [],
     series: [],
+    searchPerformed: false,
 
 })
 
