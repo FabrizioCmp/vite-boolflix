@@ -19,6 +19,7 @@
                         <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>       
                         <span v-for="n in (5 - transformVoteBase(media.vote_average))"><b class="star_dark">&starf;</b></span>       
                     </li>
+                    <li>overview: <b>{{media.overview}}</b></li>
                 </ul>
             </div>
         </div>
@@ -108,6 +109,11 @@ export default {
         height: 100%;
         border-radius: 15px;
         background-color: rgba(0, 0, 0, 0.823);
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar{
+            width: 0px;
+        }
     }
 }
 
