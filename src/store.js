@@ -40,3 +40,4 @@ export function searchMedia(textInput) {
             console.log(store.series)
         })
 }
+
