@@ -14,8 +14,9 @@
                     <li>lingua:
                         <img class="flag_img" :src="getFlagURL(media.original_language)" alt="">
                     </li>
-                    <li>voto: <span v-for="n in transformVoteBase(media.vote_average)"><b
-                                class="star">&starf;</b></span>
+                    <li>voto: 
+                        <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>       
+                        <span v-for="n in (5 - transformVoteBase(media.vote_average))"><b class="star_dark">&starf;</b></span>       
                     </li>
                 </ul>
             </div>
@@ -31,8 +32,9 @@
                     <li>lingua:
                         <img class="flag_img" :src="getFlagURL(media.original_language)" alt="">
                     </li>
-                    <li>voto: <span v-for="n in transformVoteBase(media.vote_average)"><b
-                                class="star">&starf;</b></span>
+                    <li>voto: 
+                        <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>          
+                        <span v-for="n in (5 - transformVoteBase(media.vote_average))"><b class="star_dark">&starf;</b></span>          
                     </li>
                 </ul>
             </div>
@@ -95,7 +97,7 @@ export default {
     height: 300px;
     box-shadow: 4px 4px 10px black;
     border-radius: 20px;
-    border: 5px solid red;
+    border: 3px solid red;
 
     .description_box {
         position: absolute;
@@ -118,6 +120,10 @@ export default {
 .star {
     color: rgb(231, 214, 67);
 }
+.star_dark{
+    color: rgb(32, 32, 32);
+}
+
 
 .img_box {
     height: 100%;
