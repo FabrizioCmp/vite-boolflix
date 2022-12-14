@@ -13,7 +13,7 @@
 
 <script>
 
-import { store } from "../store";
+import { store, fetchgeneri } from "../store";
 
 export default {
     data() {
@@ -25,6 +25,9 @@ export default {
     },
     methods: {
 
+    },
+    created(){
+        fetchgeneri()
     },
     computed: {
 
@@ -39,6 +42,7 @@ export default {
     display: flex;
     align-items: center;
     padding: 1rem;
+    border-bottom: 1px solid red;
 
     h1 {
         margin-bottom: 0%;
@@ -57,7 +61,7 @@ export default {
             color: white;
         }
         .my_input{
-            width: 350px;     
+            width: 300px;   
         }
     }
 }

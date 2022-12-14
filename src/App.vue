@@ -30,7 +30,7 @@ export default {
             
             //evita che si veda il banner NoResult nell'istante tra l'invio della richiesta API
             // e la ricezione dei dati richiesti
-            setTimeout(function () { return store.searchPerformed = true }, 500)
+            setTimeout(function () { return store.searchPerformed = true }, 1500)
         }
     }
 }
@@ -42,6 +42,6 @@ export default {
 @use "./style/general.scss";
 
 body {
-    background-color: #303030;
+    background-color: black;
 }
 </style>

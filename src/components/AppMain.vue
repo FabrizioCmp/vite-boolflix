@@ -3,7 +3,7 @@
         <div v-if="checkIfFilm" class="movie_box">
             <h2>Film &#127871;</h2>
             <div class="row gy-3 my-3 ">
-                <div v-for="movie in store.movies" class="col-3">
+                <div v-for="movie in store.movies" class="col-sm-6 col-md-4 col-lg-3">
                     <AppCard :media="movie"></AppCard>
                 </div>
             </div>

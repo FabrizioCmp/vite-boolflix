@@ -9,20 +9,24 @@
             </div>
             <div v-show="displayDescription || !media.poster_path" class="description_box">
                 <ul class="my_ul">
-                    <li>titolo: <b>{{ functiontitle.title }}</b></li>
-                    <li>titolo originale: <b>{{ functiontitle.original_title }}</b></li>
-                    <li>lingua:
+                    <li><b>titolo: </b> {{ functiontitle.title }}</li>
+                    <li><b>titolo originale: </b>{{ functiontitle.original_title }}</li>
+                    <li><b> lingua: </b>
                         <img v-if="getFlagURL(media.original_language)" class="flag_img"
                             :src="getFlagURL(media.original_language)" alt="">
                         <span v-else>{{ media.original_language }}</span>
                     </li>
-                    <li>voto:
+                    <li> <b>voto: </b>
                         <span v-for="i in 5" class="star"
                             :class="{ star_dark: changeStarColor(i, transformVoteBase(media.vote_average)) }">
                             &starf;
                         </span>
                     </li>
-                    <li>overview: <b>{{ media.overview }}</b></li>
+                    <li>
+                        <b>attori: </b>
+                        <span v-for="actor in store.actors">{{` ${actor},`}}</span>
+                    </li>
+                    <li><b>overview: </b>{{ media.overview }}</li>
                 </ul>
             </div>
         </div>
@@ -43,9 +47,10 @@ export default {
     },
     data() {
         return {
+            store,
             displayDescription: false,
             mediaType: "",
-            basicURL: "https://api.themoviedb.org/3"
+            basicURL: "https://api.themoviedb.org/3",
         }
     },
     methods: {
@@ -87,17 +92,19 @@ export default {
                 }
             })
                 .then((resp) => {
-                    console.log(resp)
+
+                    // svuota gli array e poi li riempe con il i dati dalla nuova chiamata API
+                    store.actors = [];
                     if (resp.data.cast.length > 0) {
                         for (let i = 0; i < 5; i++) {
-                            store.filmActors.push(resp.data.cast[i].name)
+                            store.actors.push(resp.data.cast[i].name)
                             if (i === (resp.data.cast.length -1)){
                                 break
                             }
                         }
-                        console.log(store.filmActors)
+                        console.log(store.actors)
                     }else{
-                        store.filmActors.push("No info")
+                        store.actors.push("No info")
                         console.log("no info")
                     }
                 })
@@ -109,11 +116,11 @@ export default {
 
         //gestice le proprietà della card in base al tipo di media (film|serie)
         functiontitle() {
-            const meidaObj = {
+            const mediaObj = {
                 "title": this.media.title ?? this.media.name,
                 "original_title": this.media.original_title ?? this.media.original_name
             }
-            return meidaObj;
+            return mediaObj;
         },
 
         //in base alle proprietà del media agiorna la variabile mediaType=(movie|tv)
@@ -133,6 +140,8 @@ export default {
     box-shadow: 4px 4px 10px black;
     border-radius: 20px;
     border: 3px solid rgb(255, 0, 0);
+    max-width: 300px;
+    margin: 0 auto ;
 
     .description_box {
         position: absolute;
@@ -155,6 +164,13 @@ export default {
     padding-left: 0px;
     font-size: .8rem;
     color: white;
+
+    li{
+        margin-top: 4px;
+        b{
+            text-shadow: 1px 1px red;
+        }
+    }
 }
 
 .star {
