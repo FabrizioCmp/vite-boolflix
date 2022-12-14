@@ -1,17 +1,14 @@
 <template>
+
     <div class="my_card" @mouseover="displayDescription = true" @mouseleave="displayDescription=false">
-        <!-- tramite le proprietà di media scelgo se stampare
-        una card film o una card  serie -->
-        
-        <!-- card FILM -->
-        <div class="h-100" v-if="media.hasOwnProperty('title')">
+        <div class="h-100">
             <div class="img_box">
                 <img :src="computeImgUrl(media.poster_path)" alt="">
             </div>
-            <div v-show="displayDescription" class="description_box">
+            <div v-show="displayDescription || !media.poster_path " class="description_box">
                 <ul class="my_ul">
-                    <li>titolo: <b>{{ media.title }}</b></li>
-                    <li>titolo originale: <b>{{ media.original_title }}</b></li>
+                    <li>titolo: <b>{{ functiontitle.title }}</b></li>
+                    <li>titolo originale: <b>{{ functiontitle.original_title }}</b></li>
                     <li>lingua:
                         <img v-if="getFlagURL(media.original_language)" class="flag_img" :src="getFlagURL(media.original_language)" alt="">
                         <span v-else>{{media.original_language}}</span>
@@ -24,30 +21,7 @@
                     <li>overview: <b>{{media.overview}}</b></li>
                 </ul>
             </div>
-        </div>
-
-        <!-- card SERIE -->
-        <div class="h-100" v-else>
-            <div class="img_box">
-                <img :src="computeImgUrl(media.poster_path)" alt="">
-            </div>
-            <div v-show="displayDescription" class="description_box">
-                <ul class="my_ul">
-                    <li>titolo: <b>{{ media.name }}</b></li>
-                    <li>titolo originale: <b>{{ media.original_name }}</b></li>
-                    <li>lingua:
-                        <img v-if="getFlagURL(media.original_language)" class="flag_img" :src="getFlagURL(media.original_language)" alt="">
-                        <span v-else>{{media.original_language}}</span>
-                    </li>
-                    <li>voto: 
-                        <span v-for="i in 5" class="star" :class="{star_dark : changeStarColor(i, transformVoteBase(media.vote_average))}">
-                            &starf;    
-                        </span>            
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
+        </div> 
     </div>
 
 </template>
@@ -99,6 +73,18 @@ export default {
 
     },
     computed: {
+
+        functiontitle(){
+            const meidaObj ={
+                "title" : this.media.title ?? this.media.name,
+                "original_title": this.media.original_title ?? this.media.original_name
+            }
+            return meidaObj
+        },
+
+        functionOriginalTitle(){
+            return this.media.original_title ?? this.media.original_name
+        }
     }
 }
 </script>
