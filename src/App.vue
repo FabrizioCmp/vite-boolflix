@@ -21,13 +21,15 @@ export default {
     },
     methods: {
         search() {
+            store.movies = []
+            store.series = []
             if (store.searchText) {
                 searchMedia(store.searchText);
                 console.log("ricerca effettuata")
             }
             //evita che si veda il banner NoResult nell'istante tra l'invio della richiesta API
             // e la ricezione dei dati richiesti
-            setTimeout(function () { return store.searchPerformed = true }, 1000)
+            setTimeout(function () { return store.searchPerformed = true }, 500)
         }
     }
 }

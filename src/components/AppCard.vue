@@ -65,6 +65,7 @@ export default {
             return getImage(getCountryCode(lang))
         },
 
+        //se l'indice è maggiore del voto(target) allora stampo una stella nera
         changeStarColor(index,target){
             if(index > target){
                 return true
@@ -74,6 +75,7 @@ export default {
     },
     computed: {
 
+        //gestice le proprietà della card in base al tipo di media (film|serie)
         functiontitle(){
             const meidaObj ={
                 "title" : this.media.title ?? this.media.name,
@@ -82,9 +84,6 @@ export default {
             return meidaObj
         },
 
-        functionOriginalTitle(){
-            return this.media.original_title ?? this.media.original_name
-        }
     }
 }
 </script>
