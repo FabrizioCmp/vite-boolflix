@@ -4,7 +4,7 @@
         <h1>BOOLFLIX</h1>
         <!-- al submit emette l'evento ascoltato da App.vue per far effettuare la ricerca -->
         <form @submit.prevent="$emit('performSearch')">
-            <input type="text" v-model="store.searchText" placeholder="inserisci titolo">
+            <input class="my_input" type="text" v-model="store.searchText" placeholder="inserisci titolo">
             <button type="submit">Search</button>
         </form>
 
@@ -47,13 +47,18 @@ export default {
         text-shadow: 2px 1px white;
     }
 
-    form button {
-        border: none;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        padding: 3px 6px;
-        background-color: red;
-        color: white;
+    form {
+        button {
+            border: none;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 3px 6px;
+            background-color: red;
+            color: white;
+        }
+        .my_input{
+            width: 350px;     
+        }
     }
 }
 </style>

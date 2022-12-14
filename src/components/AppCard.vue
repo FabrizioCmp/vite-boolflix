@@ -17,8 +17,9 @@
                         <span v-else>{{media.original_language}}</span>
                     </li>
                     <li>voto: 
-                        <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>       
-                        <span v-for="n in (5 - transformVoteBase(media.vote_average))"><b class="star_dark">&starf;</b></span>       
+                        <span v-for="i in 5" class="star" :class="{star_dark : changeStarColor(i, transformVoteBase(media.vote_average))}">
+                            &starf;    
+                        </span>     
                     </li>
                     <li>overview: <b>{{media.overview}}</b></li>
                 </ul>
@@ -39,8 +40,9 @@
                         <span v-else>{{media.original_language}}</span>
                     </li>
                     <li>voto: 
-                        <span v-for="n in transformVoteBase(media.vote_average)"><b class="star">&starf;</b></span>          
-                        <span v-for="n in (5 - transformVoteBase(media.vote_average))"><b class="star_dark">&starf;</b></span>          
+                        <span v-for="i in 5" class="star" :class="{star_dark : changeStarColor(i, transformVoteBase(media.vote_average))}">
+                            &starf;    
+                        </span>            
                     </li>
                 </ul>
             </div>
@@ -87,11 +89,16 @@ export default {
         // dal codice lingua trova il codice Paese e ne ritorna l'url della bandiera
         getFlagURL(lang) {
             return getImage(getCountryCode(lang))
+        },
+
+        changeStarColor(index,target){
+            if(index > target){
+                return true
+            }
         }
 
     },
     computed: {
-       
     }
 }
 </script>

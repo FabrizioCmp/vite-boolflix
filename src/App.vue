@@ -24,9 +24,10 @@ export default {
             if (store.searchText) {
                 searchMedia(store.searchText);
                 console.log("ricerca effettuata")
-            }else{
-                store.searchPerformed = true;
             }
+            //evita che si veda il banner NoResult nell'istante tra l'invio della richiesta API
+            // e la ricezione dei dati richiesti
+            setTimeout(function () { return store.searchPerformed = true }, 1000)
         }
     }
 }
