@@ -50,7 +50,7 @@ export default {
                 return "https://image.tmdb.org/t/p/w300" + file;
             }
             else {
-                return "/imgs/black-bg.jpg"
+                return "/imgs/B.png"
             }
         },
 
@@ -96,7 +96,7 @@ export default {
     height: 300px;
     box-shadow: 4px 4px 10px black;
     border-radius: 20px;
-    border: 3px solid red;
+    border: 3px solid rgb(255, 0, 0);
 
     .description_box {
         position: absolute;
@@ -104,7 +104,7 @@ export default {
         width: 100%;
         height: 100%;
         border-radius: 15px;
-        background-color: rgba(0, 0, 0, 0.823);
+        background-color: rgba(0, 0, 0, 0.813);
         overflow-y: scroll;
 
         &::-webkit-scrollbar{
