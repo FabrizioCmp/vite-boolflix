@@ -1,7 +1,8 @@
 <template>
     <div class="my_navbar">
 
-        <h1>BOOLFLIX</h1>
+        <h1 class="d-none d-md-block ">BOOLFLIX</h1>
+        <h1 class="d-block d-md-none">B</h1>
         <!-- al submit emette l'evento ascoltato da App.vue per far effettuare la ricerca -->
         <div class="menu">
             <h3 @click="displayOnlyFilm">Film</h3>
@@ -83,6 +84,7 @@ export default {
         column-gap: 5%;
         
         h3 {
+            font-size: 1rem;
             color: white;
             cursor: pointer;
             margin-bottom: 0;
@@ -108,7 +110,8 @@ export default {
         }
 
         .my_input {
-            width: 300px;
+            width: 25vw;
+            max-width: 350px;
         }
     }
 }

@@ -4,22 +4,30 @@
         @mouseenter="checkMediatype, searchActors(this.mediaType, this.media.id)"
         @mouseleave="displayDescription = false">
         <div class="h-100">
+
             <div class="img_box">
                 <img :src="computeImgUrl(media.poster_path)" alt="">
+                <!-- se non ho l'immagine e non è in hover allora mostra il titolo  -->
                 <div v-if="!media.poster_path && !displayDescription" class="noImg_title"> 
-                    {{defineTitle.original_title}}
+                    {{defineTitle.title}}
                 </div>
             </div>
+
+            <!-- 'displayDescription' messa a True con l'hover sulla card -->
             <div v-show="displayDescription" class="description_box">
                 <ul class="my_ul">
+                    <!-- nasconde il  titolo se guale a titoloOriginale  -->
                     <li v-if="!hideTitle"><b>titolo: </b> {{ defineTitle.title }}</li>
                     <li><b>titolo originale: </b>{{ defineTitle.original_title }}</li>
                     <li><b> lingua: </b>
+                        <!-- mostra la bandiera della lingua se presente altrimenti
+                        mostra la lingua in formato ISO 639 -->
                         <img v-if="getFlagURL(media.original_language)" class="flag_img"
                             :src="getFlagURL(media.original_language)" alt="">
                         <span v-else>{{ media.original_language }}</span>
                     </li>
                     <li> <b>voto: </b>
+                        <!-- se i è maggiore del voto, sovrascrivo la classe star con star_dark -->
                         <span v-for="i in 5" class="star"
                             :class="{ star_dark: changeStarColor(i, transformVoteBase(media.vote_average)) }">
                             &starf;
@@ -27,9 +35,9 @@
                     </li>
                     <li>
                         <b>attori: </b>
-                        <span v-for="actor in store.actors">{{ ` ${actor},` }}</span>
+                        <span v-for="actor in store.actors">{{ ` ${actor}` }}</span>
                     </li>
-                    <li><b>overview: </b>{{ media.overview }}</li>
+                    <li><b>overview: </b>{{ (media.overview) ? media.overview : "no info" }}</li>
                 </ul>
             </div>
         </div>
@@ -92,7 +100,7 @@ export default {
             }
         },
 
-
+        // Richiesta Api per gli attori e memorizzazione dei primi 5
         searchActors(media, mediaId) {
             axios.get(this.basicURL + "/" + media + "/" + mediaId + "/credits", {
                 params: {
@@ -100,8 +108,7 @@ export default {
                 }
             })
                 .then((resp) => {
-
-                    // svuota gli array e poi li riempe con il i dati dalla nuova chiamata API
+                    // svuota gli array e poi li riempe con i dati dalla nuova chiamata API
                     store.actors = [];
                     if (resp.data.cast.length > 0) {
                         for (let i = 0; i < 5; i++) {
@@ -179,6 +186,7 @@ export default {
         margin-top: 4px;
 
         b {
+            font-size: 1rem;
             text-shadow: 1px 1px red;
         }
     }
@@ -190,7 +198,7 @@ export default {
 }
 
 .star_dark {
-    color: rgb(32, 32, 32);
+    color: rgb(60, 59, 59);
 }
 
 

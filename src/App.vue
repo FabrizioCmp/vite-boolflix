@@ -21,6 +21,7 @@ export default {
     },
     methods: {
         search() {
+            // resetta filtri,array e poi compie la richiesta api
             store.searchPerformed = false
             store.movies = []
             store.series = []
@@ -28,7 +29,6 @@ export default {
             store.activeFilterSeries = null
             if (store.searchText) {
                 searchMedia(store.searchText);
-                console.log("ricerca effettuata")
             }
             
             //evita che si veda il banner NoResult nell'istante tra l'invio della richiesta API

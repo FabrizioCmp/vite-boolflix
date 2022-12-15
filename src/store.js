@@ -26,9 +26,7 @@ export const store = reactive({
 export function searchMedia(textInput) {
     // textInput(stringa) rappresenta il contenuto della searchBox in cui l'utente effetua la ricerca
 
-
-
-    //ricerca film
+    //richiesta film
     axios.get(store.basicURL + "/search/movie", {
         params: {
             api_key: '21da4ccaba75317ee4b4509bec7eec2b',
@@ -41,7 +39,7 @@ export function searchMedia(textInput) {
         console.log(store.movies)
     })
 
-    //ricerca serie
+    //richiesta serie
     axios.get(store.basicURL + "/search/tv", {
         params: {
             api_key: '21da4ccaba75317ee4b4509bec7eec2b',
@@ -55,9 +53,10 @@ export function searchMedia(textInput) {
     })
 }
 
+
 export function fetchgeneri() {
     // Recupera i generi per film e serie ed aggiorna le rispettive variabili
-    
+
     axios.get(store.basicURL + "/genre/movie/list", {
         params: {
             api_key: '21da4ccaba75317ee4b4509bec7eec2b',

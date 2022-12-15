@@ -4,7 +4,7 @@
         <!--*** FILM ***-->
         <div v-if="checkIfFilm && store.showFilmBox" class="movie_box">
             <h2>
-                <span> Film &#127871;</span>
+                <span class="d-none d-md-inline"> Film <span class="d-none d-lg-inline">&#127871;</span></span>
                 <svg @click="changeVisiblityGeneriFilm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500 ">
                     <title>Filter</title>
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -22,7 +22,7 @@
         <!--*** SERIE ***-->
         <div v-if="checkIfSeries && store.showSerieBox" class="series_box">
             <h2>
-                <span>Serie &#128250;</span>
+                <span class="d-none d-md-inline">Serie <span class="d-none d-lg-inline">&#128250;</span></span>
                 <svg @click="changeVisiblityGeneriSerie" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500 ">
                     <title>Filter</title>
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -31,11 +31,13 @@
             </h2>
             <GeneriVue v-if="store.showGeneriSerie" :listageneri="store.generiSerie"></GeneriVue>
             <div class="row gy-3 my-3">
-                <div v-for="serie in store.filteredSeries" class="col-3">
+                <div v-for="serie in store.filteredSeries" class="col-sm-6 col-md-4 col-lg-3">
                     <AppCard :media="serie"></AppCard>
                 </div>
             </div>
         </div>
+
+        <!--*** NO RESULTS ***-->
         <div v-if="!checkIfSeries && !checkIfFilm && store.searchPerformed" class="no_results">
             No results
         </div>
@@ -128,7 +130,7 @@ h2 {
 .no_results {
     width: 50%;
     margin: auto;
-    font-size: 5rem;
+    font-size: 5vw;
     font-weight: 600;
     text-align: center;
     margin-top: 5rem;
