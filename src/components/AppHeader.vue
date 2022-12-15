@@ -6,6 +6,7 @@
         <div class="menu">
             <h3 @click="displayOnlyFilm">Film</h3>
             <h3 @click="displayOnlySerie">Serie</h3>
+            <h3 @click="displayAll">Tutti</h3>
             <form @submit.prevent="$emit('performSearch')">
                 <input class="my_input" type="text" v-model="store.searchText" placeholder="inserisci titolo">
                 <button type="submit">Search</button>
@@ -42,14 +43,22 @@ export default {
             store.activeFilterSeries = null
             store.filteredSeries = store.series
         },
+        displayAll(){
+            store.showFilmBox = true
+            store.showGeneriSerie = true
+            store.showGeneriFilm = false 
+            store.activeFilterMovies = null
+            store.showGeneriSerie = false
+            store.activeFilterSeries = null
+            store.filteredMovies = store.movies
+            store.filteredSeries = store.series
+
+        }
 
     },
     created() {
         fetchgeneri()
     },
-    computed: {
-       
-    }
 }
 </script>
 

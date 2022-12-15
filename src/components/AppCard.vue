@@ -6,11 +6,14 @@
         <div class="h-100">
             <div class="img_box">
                 <img :src="computeImgUrl(media.poster_path)" alt="">
+                <div v-if="!media.poster_path && !displayDescription" class="noImg_title"> 
+                    {{defineTitle.original_title}}
+                </div>
             </div>
-            <div v-show="displayDescription || !media.poster_path" class="description_box">
+            <div v-show="displayDescription" class="description_box">
                 <ul class="my_ul">
-                    <li><b>titolo: </b> {{ functiontitle.title }}</li>
-                    <li><b>titolo originale: </b>{{ functiontitle.original_title }}</li>
+                    <li v-if="!hideTitle"><b>titolo: </b> {{ defineTitle.title }}</li>
+                    <li><b>titolo originale: </b>{{ defineTitle.original_title }}</li>
                     <li><b> lingua: </b>
                         <img v-if="getFlagURL(media.original_language)" class="flag_img"
                             :src="getFlagURL(media.original_language)" alt="">
@@ -24,7 +27,7 @@
                     </li>
                     <li>
                         <b>attori: </b>
-                        <span v-for="actor in store.actors">{{` ${actor},`}}</span>
+                        <span v-for="actor in store.actors">{{ ` ${actor},` }}</span>
                     </li>
                     <li><b>overview: </b>{{ media.overview }}</li>
                 </ul>
@@ -38,6 +41,7 @@
 import { store } from "../store.js"
 import { getImage, getCountryCode } from "language-flag-colors";
 import axios from "axios";
+import { def } from "@vue/shared";
 
 export default {
     props: {
@@ -52,6 +56,8 @@ export default {
             displayDescription: false,
             mediaType: "",
             basicURL: "https://api.themoviedb.org/3",
+            noImg : false,
+            hideTitle: false
         }
     },
     methods: {
@@ -63,6 +69,7 @@ export default {
                 return "https://image.tmdb.org/t/p/w300" + file;
             }
             else {
+
                 return "/imgs/B.png"
             }
         },
@@ -98,15 +105,13 @@ export default {
                     store.actors = [];
                     if (resp.data.cast.length > 0) {
                         for (let i = 0; i < 5; i++) {
-                            store.actors.push(resp.data.cast[i].name)
-                            if (i === (resp.data.cast.length -1)){
+                            store.actors.push(resp.data.cast[i].name + ",")
+                            if (i === (resp.data.cast.length - 1)) {
                                 break
                             }
                         }
-                        console.log(store.actors)
-                    }else{
+                    } else {
                         store.actors.push("No info")
-                        console.log("no info")
                     }
                 })
 
@@ -116,10 +121,14 @@ export default {
     computed: {
 
         //gestice le proprietà della card in base al tipo di media (film|serie)
-        functiontitle() {
+        // e nasconde il titolo se uguale al titolo originale
+        defineTitle() {
             const mediaObj = {
                 "title": this.media.title ?? this.media.name,
                 "original_title": this.media.original_title ?? this.media.original_name
+            }
+            if(mediaObj.title === mediaObj.original_title){
+                this.hideTitle = true
             }
             return mediaObj;
         },
@@ -129,7 +138,7 @@ export default {
             this.mediaType = (this.media.hasOwnProperty("title") ? "movie" : "tv");
         }
 
-    }
+    },
 }
 </script>
 
@@ -142,7 +151,7 @@ export default {
     border-radius: 20px;
     border: 3px solid rgb(255, 0, 0);
     max-width: 300px;
-    margin: 0 auto ;
+    margin: 0 auto;
 
     .description_box {
         position: absolute;
@@ -166,9 +175,10 @@ export default {
     font-size: .8rem;
     color: white;
 
-    li{
+    li {
         margin-top: 4px;
-        b{
+
+        b {
             text-shadow: 1px 1px red;
         }
     }
@@ -187,7 +197,19 @@ export default {
 .img_box {
     height: 100%;
     width: 100%;
-
+    .noImg_title{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 10px;
+        color: white;
+        border-radius: 10px;
+        border: 1px solid white;
+        background-color: rgba(0, 0, 0, 0.798);
+    }
 }
 
 img {
