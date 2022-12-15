@@ -21,6 +21,7 @@ export default {
     },
     methods: {
         search() {
+            store.searchPerformed = false
             store.movies = []
             store.series = []
             if (store.searchText) {
@@ -44,4 +45,5 @@ export default {
 body {
     background-color: black;
 }
+
 </style>

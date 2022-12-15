@@ -11,7 +11,8 @@ export const store = reactive({
     searchPerformed: false,
     generiFilm: [],
     generiSerie: [],
-    generilist: [],
+    showFilmBox: true,
+    showSerieBox: true,
     basicURL : "https://api.themoviedb.org/3"
 
 })

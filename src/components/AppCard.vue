@@ -43,6 +43,7 @@ export default {
     props: {
         media: {
             type: Object,
+            required: true
         }
     },
     data() {

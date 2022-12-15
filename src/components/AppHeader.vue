@@ -1,13 +1,16 @@
 <template>
-    <div class="navbar">
+    <div class="my_navbar">
 
         <h1>BOOLFLIX</h1>
         <!-- al submit emette l'evento ascoltato da App.vue per far effettuare la ricerca -->
-        <form @submit.prevent="$emit('performSearch')">
-            <input class="my_input" type="text" v-model="store.searchText" placeholder="inserisci titolo">
-            <button type="submit">Search</button>
-        </form>
-
+        <div class="menu">
+            <h3 @click="displayOnlyFilm">Film</h3>
+            <h3 @click="displayOnlySerie">Serie</h3>
+            <form @submit.prevent="$emit('performSearch')">
+                <input class="my_input" type="text" v-model="store.searchText" placeholder="inserisci titolo">
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -24,25 +27,52 @@ export default {
         }
     },
     methods: {
+        displayOnlyFilm(){
+            store.showSerieBox = false
+            store.showFilmBox =true
+    
+        },
+        displayOnlySerie(){
+            store.showFilmBox = false
+            store.showSerieBox = true
+        },
 
     },
-    created(){
+    created() {
         fetchgeneri()
     },
     computed: {
-
+       
     }
 }
 </script>
 
 
 <style scoped lang="scss">
-.navbar {
+.my_navbar {
     background-color: black;
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     padding: 1rem;
     border-bottom: 1px solid red;
+    max-width: 100vw;
+    position: fixed;
+    z-index: 500;
+    top: 0;
+    width: 100%;
+
+    .menu {
+        display: flex;
+        align-items: center;
+        column-gap: 5%;
+        
+        h3 {
+            color: white;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+    }
 
     h1 {
         margin-bottom: 0%;
@@ -52,6 +82,7 @@ export default {
     }
 
     form {
+        display: flex;
         button {
             border: none;
             border-top-right-radius: 10px;
@@ -60,8 +91,9 @@ export default {
             background-color: red;
             color: white;
         }
-        .my_input{
-            width: 300px;   
+
+        .my_input {
+            width: 300px;
         }
     }
 }

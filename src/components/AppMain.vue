@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <div v-if="checkIfFilm" class="movie_box">
+    <div class="container marginT">
+        <div v-if="checkIfFilm && store.showFilmBox" class="movie_box">
             <h2>
                 <span> Film &#127871;</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500 ">
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="checkIfSeries" class="series_box">
+        <div v-if="checkIfSeries && store.showSerieBox" class="series_box">
             <h2>
                <span>Serie &#128250;</span>
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500 ">
@@ -68,7 +68,7 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style scoped lang="scss">
 .movie_box {
     margin: 3rem 0;
 }
@@ -116,5 +116,9 @@ h2 {
     border-radius: 20px;
     box-shadow: 5px 5px 10px black;
     text-shadow: 5px 5px black;
+}
+
+.marginT{
+    margin-top: 9rem;
 }
 </style>
