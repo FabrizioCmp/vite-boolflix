@@ -29,12 +29,18 @@ export default {
     methods: {
         displayOnlyFilm(){
             store.showSerieBox = false
-            store.showFilmBox =true
+            store.showFilmBox = true
+            store.showGeneriFilm = false 
+            store.activeFilterMovies = null
+            store.filteredMovies = store.movies
     
         },
         displayOnlySerie(){
             store.showFilmBox = false
             store.showSerieBox = true
+            store.showGeneriSerie = false
+            store.activeFilterSeries = null
+            store.filteredSeries = store.series
         },
 
     },

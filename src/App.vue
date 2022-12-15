@@ -24,6 +24,8 @@ export default {
             store.searchPerformed = false
             store.movies = []
             store.series = []
+            store.activeFilterMovies = null
+            store.activeFilterSeries = null
             if (store.searchText) {
                 searchMedia(store.searchText);
                 console.log("ricerca effettuata")
@@ -31,7 +33,7 @@ export default {
             
             //evita che si veda il banner NoResult nell'istante tra l'invio della richiesta API
             // e la ricezione dei dati richiesti
-            setTimeout(function () { return store.searchPerformed = true }, 1500)
+            setTimeout(function () { return store.searchPerformed = true }, 700)
         }
     }
 }

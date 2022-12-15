@@ -1,29 +1,37 @@
 <template>
     <div class="container marginT">
+
+        <!--*** FILM ***-->
         <div v-if="checkIfFilm && store.showFilmBox" class="movie_box">
             <h2>
                 <span> Film &#127871;</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500 ">
-                    <title>Filter</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                     stroke-width="32" d="M32 144h448M112 256h288M208 368h96" />
+                <svg @click="changeVisiblityGeneriFilm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500 ">
+                    <title>Filter</title>
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32" d="M32 144h448M112 256h288M208 368h96" />
                 </svg>
             </h2>
+            <GeneriVue v-if="store.showGeneriFilm" :listageneri="store.generiFilm"></GeneriVue>
             <div class="row gy-3 my-3 ">
-                <div v-for="movie in store.movies" class="col-sm-6 col-md-4 col-lg-3">
+                <div v-for="movie in store.filteredMovies" class="col-sm-6 col-md-4 col-lg-3">
                     <AppCard :media="movie"></AppCard>
                 </div>
             </div>
         </div>
+
+        <!--*** SERIE ***-->
         <div v-if="checkIfSeries && store.showSerieBox" class="series_box">
             <h2>
-               <span>Serie &#128250;</span>
-               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500 ">
-                    <title>Filter</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                     stroke-width="32" d="M32 144h448M112 256h288M208 368h96" />
+                <span>Serie &#128250;</span>
+                <svg @click="changeVisiblityGeneriSerie" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500 ">
+                    <title>Filter</title>
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32" d="M32 144h448M112 256h288M208 368h96" />
                 </svg>
             </h2>
+            <GeneriVue v-if="store.showGeneriSerie" :listageneri="store.generiSerie"></GeneriVue>
             <div class="row gy-3 my-3">
-                <div v-for="serie in store.series" class="col-3">
+                <div v-for="serie in store.filteredSeries" class="col-3">
                     <AppCard :media="serie"></AppCard>
                 </div>
             </div>
@@ -36,13 +44,24 @@
 
 <script>
 import AppCard from "./AppCard.vue";
-import { store } from "../store";
+import GeneriVue from "./Generi.vue";
+import { store, } from "../store";
+
 
 export default {
-    components: { AppCard },
+    components: { AppCard, GeneriVue },
     data() {
         return {
             store,
+
+        }
+    },
+    methods: {
+        changeVisiblityGeneriFilm() {
+            store.showGeneriFilm = store.showGeneriFilm ? false : true;
+        },
+        changeVisiblityGeneriSerie() {
+            store.showGeneriSerie = store.showGeneriSerie ? false : true;
         }
     },
     computed: {
@@ -71,13 +90,16 @@ export default {
 <style scoped lang="scss">
 .movie_box {
     margin: 3rem 0;
+
 }
 
 .series_box {
     margin: 1rem 0;
+
 }
 
 h2 {
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,7 +107,6 @@ h2 {
     color: white;
     background-color: red;
     width: 20%;
-    margin: auto;
     border-radius: 15px;
     box-shadow: 3px 3px 10px black;
 
@@ -96,7 +117,8 @@ h2 {
         padding: 3px;
         height: 30px;
         cursor: pointer;
-        &:active{
+
+        &:active {
             background-color: black;
         }
     }
@@ -118,7 +140,7 @@ h2 {
     text-shadow: 5px 5px black;
 }
 
-.marginT{
+.marginT {
     margin-top: 9rem;
 }
 </style>
