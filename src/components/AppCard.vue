@@ -1,5 +1,5 @@
 <template>
-
+    
     <div class="my_card" @mouseover.="displayDescription = true"
         @mouseenter="checkMediatype, searchActors(this.mediaType, this.media.id)"
         @mouseleave="displayDescription = false">

@@ -46,6 +46,7 @@ export default {
         },
         displayAll(){
             store.showFilmBox = true
+            store.showSerieBox = true
             store.showGeneriSerie = true
             store.showGeneriFilm = false 
             store.activeFilterMovies = null
@@ -88,6 +89,9 @@ export default {
             color: white;
             cursor: pointer;
             margin-bottom: 0;
+            &:active{
+                color: red;
+            }
         }
     }
 
